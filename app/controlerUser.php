@@ -67,8 +67,7 @@ function ctlUserBorrar() {
 }
 //modifica un usuario
 function ctlUserModificar() {
-    if (isset($_POST['nombre']) && isset($_POST['correo']) && isset($_POST['clave']) && isset($_POST['estado']) && isset($_POST['plan'])) {       
-        limpiarArrayEntrada($_POST); //Evito la posible inyección de código          
+    if (isset($_POST['nombre']) && isset($_POST['correo']) && isset($_POST['clave']) && isset($_POST['estado']) && isset($_POST['plan'])) {                  
         $user = new Usuario();                
         $user->nombre= $_POST['nombre'];
         $user->login=$_GET['id']; 
@@ -77,7 +76,7 @@ function ctlUserModificar() {
         $user->estado=$_POST['estado'];
         $user->plan =$_POST['plan'];        
         $error=comprobarErroresModificar($user);    
-        if (!comprobarCorreoId($user->login,$user->correo)){
+        if (comprobarCorreoId($user->login,$user->correo)){
             $error='correo';
         }        
         if ($error!=FALSE) {                       

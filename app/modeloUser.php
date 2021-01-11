@@ -197,7 +197,10 @@ function comprobarCorreoId($userid,$correo) {
         $db = AccesoDatos::getModelo();
         $user = $db->chekCorreo($correo);        
         if ($user) {
-            $resultado= ($user->login==$userid);            
+            $resultado=true;
+            if($user->login==$userid && $user->correo ==$correo){
+                $resultado=false;            
+            }
         }   
     return $resultado;
 }
@@ -208,9 +211,7 @@ function comprobarCorreoExiste($correo) {
         $user = $db->chekCorreo($correo);
         if ($user) {
             $resultado=true;
-        }
-        
-    
+        }   
     return $resultado;
 }
 
