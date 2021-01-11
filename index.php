@@ -21,6 +21,9 @@ $rutasUser = [
     "VerUsuarios" => "ctlUserVerUsuarios",
     "Registro"    => "ctlUserVerRegistro"
 ];
+// Elimina posibles inyecciones HTML / PHP
+limpiarArrayEntrada($_POST);
+limpiarArrayEntrada($_GET);
 // Si no hay usuario a Inicio
 if (!isset($_SESSION['user'])){   
     if (isset($_GET['orden']) && $_GET['orden']=="Registro"){
